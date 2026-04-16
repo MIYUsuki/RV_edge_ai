@@ -1,0 +1,36 @@
+/* SPDX-License-Identifier: Apache-2.0 OR MIT */
+/*
+ * Copyright (c) 2024 Rockchip Electronics Co., Ltd.
+ */
+
+#ifndef KMPP_META_IMPL_H
+#define KMPP_META_IMPL_H
+
+#include "mpp_list.h"
+#include "kmpp_meta.h"
+
+#define MPP_TAG_SIZE            32
+
+typedef struct __attribute__((packed, aligned(4))) KmppMetaVal_t {
+    rk_u32              state;
+    union {
+        rk_s32          val_s32;
+        rk_s64          val_s64;
+        void            *val_ptr;
+    };
+} KmppMetaVal;
+
+typedef struct __attribute__((packed, aligned(4))) KmppMetaShmVal_t {
+    rk_u32              state;
+    KmppShmPtr          val_shm;
+} KmppMetaObj;
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* KMPP_META_IMPL_H */
