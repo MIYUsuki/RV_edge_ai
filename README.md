@@ -17,3 +17,11 @@
 ESP32S3则通过uart接收RV1103推理结果并与毫米波雷达传入数据进行联合决策，并将结果经由MQTT协议发送至broker  
 小程序端则通过MQTT broker的消息提醒使用者监控范围内出现目标事件  
 ## 数据流图DFD  
+<img width="489" height="421" alt="Image" src="https://github.com/user-attachments/assets/9d4a2a66-d60b-4188-b372-ee2fd1d906cd" />  
+
+
+如图示  
+摄像头采集画面之后通过RGA和MMAP实现零拷贝推理
+输出置信度结果至esp32s3端  
+esp32s3配合接收并解析了的毫米波雷达能量值进行融合判断  
+同时红外会在未探查到目标时让esp进入ULP(Ultra Low Power)以降低功耗
